@@ -1,11 +1,13 @@
 import random
 from utilities import clearCLI
+from firstAI import FirstAI
 from player import Player
 from dealer import Dealer
+from game import Game
 
-deck = [0]
 
-def printTitle(player, dealer):
+def printTitle(player, dealer, bet=False):
+    clearCLI()
     print("""
 88          88                       88        88                       88
 88          88                       88        ""                       88
@@ -22,19 +24,17 @@ Decks: 6
 Bet Min/Max: $1/$500
 
 ~ CHIPS ~
-""" + player.name + """:\t $""" + str(player.value) + """
-Dealer:\t $""" + str(dealer.value) + "\n")
-
-def resetDeck(): # Reset & shuffle the deck
-    deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]*6
-    random.shuffle(deck)
-    return deck
+Dealer:\t $""" + str(dealer.value))
+    if bet:
+        print(player.name + """:\t $""" + str(player.value) + " (Betting $" + str(player.bet) + ")")
+    else:
+        print(player.name + """:\t $""" + str(player.value))
 
 
-def playAgain(player, dealer, deck):
+def playAgain(player, dealer, game):
     again = input("Do you want to play again? (Y/N) : ").upper()
     if again == "Y":
-	    round(player, dealer, deck)
+        round(player, dealer, game)
     else:
 	    print("Bye!")
 	    exit()
@@ -46,94 +46,97 @@ def printResults(dealer, player):
     print(player.name + ":\t Holding ~ " + player.getHandString() + " ~ for a total of |" + str(player.getHandTotal()) + "|")
 
 
-def blackjack(dealer, player):
-    if player.getHandTotal == 21:
-        clearCLI()
-        printResults(dealer.hand, player.hand)
-        print("Congratulations! You got a Blackjack!\n")
-        playAgain()
-    elif dealer.getHandTotal == 21:
-        clearCLI()
-        printResults(dealer.hand, player.hand)
-        print("Sorry, you lose. The dealer got a blackjack.\n")
-        playAgain()
-
-
-def score(dealer, player):
-    print("")
+def checkBlackjack(dealer, player, game):
     dealerTotal = dealer.getHandTotal()
     playerTotal = player.getHandTotal()
+
     if playerTotal == 21:
         if dealerTotal == 21:
             printResults(dealer, player)
             print("It's a stand-off. You and the dealer got Blackjack.\n")
+            playAgain(player, dealer, game)
         else:
             calcWinnings = player.bet * 1.5
             player.value += calcWinnings
             dealer.value -= calcWinnings
             printResults(dealer, player)
             print("Congratulations! You got a Blackjack!\n")
+            playAgain(player, dealer, game)
     elif dealerTotal == 21:
         player.value -= player.bet
         dealer.value += player.bet
         printResults(dealer, player)
         print("Sorry, you lose. The dealer got a blackjack.\n")
-    elif playerTotal > 21:
+        playAgain(player, dealer, game)
+
+
+def score(dealer, player, game):
+    print("")
+    checkBlackjack(dealer, player, game)
+    dealerTotal = dealer.getHandTotal()
+    playerTotal = player.getHandTotal()
+
+    if playerTotal > 21:
         player.value -= player.bet
         dealer.value += player.bet
         printResults(dealer, player)
         print("Sorry, you busted. You lose.\n")
+        playAgain(player, dealer, game)
     elif dealerTotal > 21:
         player.value += player.bet
         dealer.value -= player.bet
         printResults(dealer, player)
         print("Dealer busts. You win!\n")
+        playAgain(player, dealer, game)
     elif playerTotal < dealerTotal:
         player.value -= player.bet
         dealer.value += player.bet
         printResults(dealer, player)
         print("Sorry, your score is lower than the dealer. You lose.\n")
+        playAgain(player, dealer, game)
     elif playerTotal > dealerTotal:
         player.value += player.bet
         dealer.value -= player.bet
         printResults(dealer, player)
         print("Congratulations! Your score is higher than the dealer. You win\n")
+        playAgain(player, dealer, game)
     elif playerTotal == dealerTotal:
         printResults(dealer, player)
         print("It's a stand-off. You and the dealer tied.\n")
+        playAgain(player, dealer, game)
+    else:
+        print("** ERROR: (main.py) Score reached unknown state. **")
 
 
-
-def game():
-    deck = resetDeck()
+def startMatch():
+    game = Game()
     # Create players
     player = Player("Brodie", 2000)
     dealer = Dealer()
-    
-    round(player, dealer, deck)
+    round(player, dealer, game)
 
 
-def round(player, dealer, deck):
-    clearCLI() # Clear output
+def round(player, dealer, game):
     printTitle(player, dealer) # Print the "blackjack" title/ascii art
-
     player.getBet()
-    player.deal(deck)
-    dealer.deal(deck)
+    printTitle(player, dealer, True) # Print the "blackjack" title/ascii art
+
+    player.deal(game)
+    dealer.deal(game)
 
     # Loop the game
     while True:
         print("Dealer:\t Showing ~ " + str(dealer.hand[0]) + " ~")
+        game.dealerUpCard = dealer.hand[0]
         print(player.name + ":\t Holding ~ " + player.getHandString() + " ~ for a total of |" + str(player.getHandTotal()) + "|")
-        blackjack(dealer, player)
 
-        player.takeTurn(deck)
-        dealer.takeTurn(deck)
+        checkBlackjack(dealer, player, game)
 
-        score(dealer, player)
-        playAgain(player, dealer, deck)
+        player.takeTurn(game)
+        dealer.takeTurn(game)
 
+        score(dealer, player, game)
 
 	
 if __name__ == "__main__":
-    game()
+    startMatch()

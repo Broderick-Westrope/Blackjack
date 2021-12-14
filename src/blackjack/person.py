@@ -24,13 +24,13 @@ class Person:
                 string += ", "
         return string
 
-    def deal(self, deck):
+    def deal(self, game):
         self.hand = []
         for i in range(2): # Deal two cards
-	        self.draw(deck)
+	        self.draw(game)
 
-    def draw(self, deck):
-        card = deck.pop()
+    def draw(self, game):
+        card = game.getCard()
         if card == 11: card = "J"
         elif card == 12: card = "Q"
         elif card == 13: card = "K"

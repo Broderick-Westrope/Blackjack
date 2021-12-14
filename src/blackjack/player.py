@@ -5,12 +5,19 @@ class Player(Person):
     def __init__(self, name, value):
         super().__init__(name, value)
 
-    def takeTurn(self, deck):
+    def takeTurn(self, game):
+        if self.hand[0] == self.hand[1]:
+            self.splitPair()
+        
+        total = self.getHandTotal()
+        if total == 9 or total == 10 or total == 11:
+            if self.doubleDown(game) == True: return
+
         while self.getHandTotal() <= 21:
             choice = input("\nDo you want to [H]it, [S]tand, or [Q]uit: ").upper()
             clearCLI()
             if choice == "H":
-                self.hit(deck)
+                self.hit(game)
                 hand = self.hand
             elif choice == "S":
                 return
@@ -19,8 +26,8 @@ class Player(Person):
         else:
             print("You went bust.")
 
-    def hit(self, deck):
-        card = deck.pop()
+    def hit(self, game):
+        card = game.getCard()
         # If the card is an Ace
         if card == 14:
             card = "A"
@@ -38,6 +45,19 @@ class Player(Person):
         # Add the card to the players hand
         self.hand.append(card)
         print(self.name + ":\t Picked up a " + str(card) + " for a total of |" + str(self.getHandTotal()) + "|")
+
+
+    def splitPair(self):
+        choice = input("\nWould you like to split your pair? [Y/n]").upper()
+        if choice != "N":
+            pass
+    
+    def doubleDown(self, game):
+        choice = input("\nWould you like to double down on your original bet of " + str(self.bet) + "? [y/N]").upper()
+        if choice == "Y":
+            self.bet = int(self.bet * 2)
+            self.hit(game)
+            return True
 
 
     def getBet(self):
