@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>983</width>
+    <height>572</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>blackjack</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>270</y>
+      <width>261</width>
+      <height>188</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTextEdit" name="textEdit">
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:19px; background-color:#1d2433;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:12pt; color:#bae67e;&quot;&gt;~ RULES ~&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:12pt; color:#bae67e;&quot;&gt;Decks: 6&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:12pt; color:#bae67e;&quot;&gt;Bet Min/Max: $2/$500&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit_2">
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:19px; background-color:#1d2433;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:12pt; color:#bae67e;&quot;&gt;~ CHIPS ~&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:12pt; color:#bae67e;&quot;&gt;You:	$3&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:12pt; color:#bae67e;&quot;&gt;Dealer:	$3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QTextEdit" name="asciiTitle">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>981</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>981</width>
+      <height>271</height>
+     </size>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:19px; background-color:#1d2433;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;88          88                       88        88                       88&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;88          88                       88        &amp;quot;&amp;quot;                       88&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;88          88                       88                                 88&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;88,dPPYba,  88 ,adPPYYba,  ,adPPYba, 88   ,d8  88 ,adPPYYba,  ,adPPYba, 88   ,d8&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;88P'    &amp;quot;8a 88 &amp;quot;&amp;quot;     `Y8 a8&amp;quot;     &amp;quot;&amp;quot; 88 ,a8&amp;quot;   88 &amp;quot;&amp;quot;     `Y8 a8&amp;quot;     &amp;quot;&amp;quot; 88 ,a8&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;88       d8 88 ,adPPPPP88 8b         8888[     88 ,adPPPPP88 8b         8888[&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;B8b,   ,a8&amp;quot; R8 O8,    ,88 &amp;quot;Da,   ,aa E8`&amp;quot;Yba,  R8 I8,    ,88 &amp;quot;Ca,   ,aa K8`&amp;quot;Yba,&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;WY&amp;quot;Ybbd8&amp;quot;'  E8 `&amp;quot;SbbdP&amp;quot;Y8  `&amp;quot;Tbbd8&amp;quot;' R8   `Y8a O8 `&amp;quot;PbbdP&amp;quot;Y8  `&amp;quot;Ebbd8&amp;quot;' 88   `Y8a&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;                                              ,88&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MesloLGS NF','Droid Sans Mono','monospace','monospace','Droid Sans Fallback'; font-size:14pt; color:#bae67e;&quot;&gt;                                            888P&amp;quot;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

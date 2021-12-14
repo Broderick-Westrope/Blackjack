@@ -7,4 +7,4 @@ def clearCLI():
         os.system('clear')
         pass
     else:
-        print("**ERROR: (main.py) Unable to clear screen.**")
+        print("** ERROR: (main.py) Unable to clear screen. **")
