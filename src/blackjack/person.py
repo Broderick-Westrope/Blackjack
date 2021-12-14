@@ -1,7 +1,8 @@
 class Person:
-    def __init__(self, name, value):
+    def __init__(self, name, value, game):
         self.name = name
         self.value = value # This is the dollar ($) amount for the players chips
+        self.game = game
 
     def getHandTotal(self):
         total = 0
@@ -27,10 +28,10 @@ class Person:
     def deal(self, game):
         self.hand = []
         for i in range(2): # Deal two cards
-	        self.draw(game)
+	        self.draw()
 
-    def draw(self, game):
-        card = game.getCard()
+    def draw(self):
+        card = self.game.getCard()
         if card == 11: card = "J"
         elif card == 12: card = "Q"
         elif card == 13: card = "K"

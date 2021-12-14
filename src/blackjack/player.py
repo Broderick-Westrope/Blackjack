@@ -2,13 +2,13 @@ from utilities import clearCLI
 from person import Person
 
 class Player(Person):
-    def __init__(self, name, value):
-        super().__init__(name, value)
+    def __init__(self, name, value, game):
+        super().__init__(name, value, game)
 
-    def takeTurn(self, game):
+    def takeTurn(self):
         if self.hand[0] == self.hand[1]:
             self.splitPair()
-        
+
         total = self.getHandTotal()
         if total == 9 or total == 10 or total == 11:
             if self.doubleDown(game) == True: return
@@ -17,8 +17,7 @@ class Player(Person):
             choice = input("\nDo you want to [H]it, [S]tand, or [Q]uit: ").upper()
             clearCLI()
             if choice == "H":
-                self.hit(game)
-                hand = self.hand
+                self.hit()
             elif choice == "S":
                 return
             elif choice == "Q":
@@ -26,8 +25,8 @@ class Player(Person):
         else:
             print("You went bust.")
 
-    def hit(self, game):
-        card = game.getCard()
+    def hit(self):
+        card = self.game.getCard()
         # If the card is an Ace
         if card == 14:
             card = "A"
@@ -52,11 +51,11 @@ class Player(Person):
         if choice != "N":
             pass
     
-    def doubleDown(self, game):
+    def doubleDown(self):
         choice = input("\nWould you like to double down on your original bet of " + str(self.bet) + "? [y/N]").upper()
         if choice == "Y":
             self.bet = int(self.bet * 2)
-            self.hit(game)
+            self.hit()
             return True
 
 

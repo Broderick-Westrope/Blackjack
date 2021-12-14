@@ -111,8 +111,8 @@ def score(dealer, player, game):
 def startMatch():
     game = Game()
     # Create players
-    player = Player("Brodie", 2000)
-    dealer = Dealer()
+    player = Player("Brodie", 2000, game)
+    dealer = Dealer(game)
     round(player, dealer, game)
 
 
@@ -132,8 +132,8 @@ def round(player, dealer, game):
 
         checkBlackjack(dealer, player, game)
 
-        player.takeTurn(game)
-        dealer.takeTurn(game)
+        player.takeTurn()
+        dealer.takeTurn()
 
         score(dealer, player, game)
 
