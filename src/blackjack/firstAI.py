@@ -54,7 +54,7 @@ class FirstAI(Person):
             elif card == 12: card = "Q"
             elif card == 13: card = "K"
         # Add the card to the players hand
-        self.hand.append(card)
+        self.hands.append(card)
         print(self.name + ":\t Picked up a " + str(card) + " for a total of |" + str(self.getHandTotal()) + "|")
 
 
@@ -69,7 +69,7 @@ class FirstAI(Person):
                 count -= 1
             elif card >= 2 and card <= 6: 
                 count += 1
-        for card in self.hand:
+        for card in self.hands:
             if card == "J" or card == "Q" or card == "K" or card == "A" or card == 1: #! This needs to be made specific for each child class because players choose the value of A but dealer automates this
                 count -= 1
             elif card >= 2 and card <= 6: 
