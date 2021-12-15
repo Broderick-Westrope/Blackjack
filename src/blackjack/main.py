@@ -28,10 +28,8 @@ def round(player, dealer, game):
 
     # Loop the game
     while True:
-        print("Dealer:\t Showing ~ " + str(dealer.getHandString()) + " ~")
+        print("Dealer:  Showing ~ " + str(dealer.topCard()) + " ~")
         game.dealerUpCard = dealer.hands[0]
-        print(player.name + ":\t Holding ~ " + player.getHandString() +
-              " ~ for a total of |" + str(player.getHandTotal()) + "|")
 
         checkBlackjack(dealer, player, game)
 
@@ -42,12 +40,12 @@ def round(player, dealer, game):
 
 
 def playAgain(player, dealer, game):
-    again = input("Do you want to play again? (Y/N) : ").upper()
-    if again == "Y":
-        round(player, dealer, game)
-    else:
+    again = input("Do you want to play again? [Y/n] : ").upper()
+    if again == "N":
         print("Bye!")
         exit()
+    else:
+        round(player, dealer, game)
 
 
 # ANCHOR - Scoring
@@ -57,7 +55,7 @@ def score(dealer, player, game):
     print("")
     checkBlackjack(dealer, player, game)
     dealerTotal = dealer.getHandTotal()
-    playerTotal = player.getHandTotal()
+    playerTotal = player.getHandTotal(player.hands[0])  # TODO - Multiple hands
 
     if playerTotal > 21:
         player.value -= player.bet
@@ -93,7 +91,7 @@ def score(dealer, player, game):
 
 def checkBlackjack(dealer, player, game):
     dealerTotal = dealer.getHandTotal()
-    playerTotal = player.getHandTotal()
+    playerTotal = player.getHandTotal(player.hands[0])  # TODO - Multiple hands
 
     if playerTotal == 21:
         if dealerTotal == 21:
@@ -148,8 +146,8 @@ def printResults(dealer, player):
     print("~ RESULTS ~")
     print("Dealer:\t Holding ~ " + dealer.getHandString() +
           " ~ for a total of |" + str(dealer.getHandTotal()) + "|")
-    print(player.name + ":\t Holding ~ " + player.getHandString() +
-          " ~ for a total of |" + str(player.getHandTotal()) + "|")
+    print(player.name + ":\t Holding ~ " + player.getHandString(player.hands[0]) +
+          " ~ for a total of |" + str(player.getHandTotal(player.hands[0])) + "|")  # TODO - Multiple hands
 
 
 # ANCHOR - Initialization

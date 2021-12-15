@@ -1,5 +1,5 @@
-from utilities import clearCLI
-from person import Person
+from utilities import clearCLI, removeLine
+from person import Person, Hand
 
 
 class Player(Person):
@@ -7,31 +7,51 @@ class Player(Person):
         super().__init__(name, value, game)
 
     def takeTurn(self):
+        for hand in self.hands:  # Play each hand that this player controls
+            self.playHand(hand)
+
+    def playHand(self, hand):
+        self.printHand(hand)
+        if self.hands.index(hand) == 0:  # If this its the original two cards dealt
+            self.firstHand()
+
+        # Play hand
+        while True:
+            total = self.getHandTotal(hand)
+            if total > 21:
+                print("Your hand went bust.")
+            elif total == 21:
+                print("Your hand got blackjack!")
+            else:
+                choice = input(
+                    "Do you want to [H]it, [S]tand, or [Q]uit: ").upper()
+                # ansi escape arrow up then overwrite the line
+                removeLine()
+                if choice == "H":
+                    self.hit(hand)
+                elif choice == "S":
+                    break
+                elif choice == "Q":
+                    exit()
+
+    def firstHand(self):
+        hand = self.hands[0]
+        total = self.getHandTotal(hand)
         # Split pairs
-        result = self.hands[0].splitHand()
-        if result != False:
+        result = self.splitHand(hand)
+        if result != None:
             self.hands.append(result)
-
+            self.printHand(hand)
+            if hand.cards[0][0] == "A":
+                self.hit(hand)
+                return
         # Double down
-        total = self.getHandTotal()
-        if total == 9 or total == 10 or total == 11:
-            if self.doubleDown() == True:
+        elif total == 9 or total == 10 or total == 11:
+            if self.doubleDown() == True:  # If the player wants to double down
+                self.hit(hand)  # Give them one final card
                 return
 
-        # Take turn
-        while self.getHandTotal() <= 21:
-            choice = input("\nDo you want to [H]it, [S]tand, or [Q]uit: ").upper()
-            clearCLI()
-            if choice == "H":
-                self.hit(0)
-            elif choice == "S":
-                return
-            elif choice == "Q":
-                exit()
-        else:
-            print("You went bust.")
-
-    def hit(self, handNo):
+    def hit(self, hand):
         card = self.draw()
         # If the card is an Ace
         if card == 14:
@@ -53,17 +73,33 @@ class Player(Person):
             elif card == 13:
                 card = "K"
         # Add the card to the players hand
-        self.hands[handNo].addCard(card)
-        print(self.name + ":\t Picked up a " + str(card[0]) +
-              " for a total of |" + str(self.getHandTotal()) + "|")
+        hand.addCard(card)
+
+        # Display draw & hands
+        i = self.hands.index(hand)
+        print(self.name + " (Hand " + str(i+1) + "):  Drew a " + str(card[0]))
+        self.printHand(hand)
 
     def doubleDown(self):
-        choice = input("\nWould you like to double down on your original bet of " +
+        choice = input("\nWould you like to double down on your original bet of $" +
                        str(self.bet) + "? [y/N]").upper()
         if choice == "Y":
-            self.bet = int(self.bet * 2)
-            self.hit()
+            self.bet *= 2
             return True
+
+    def splitHand(self, hand):
+        if len(hand.cards) == 2 and hand.cards[0] == hand.cards[1]:
+            if hand.cards[0][0] == "A":
+                print(
+                    "NOTE: If you split your pair of Aces each hand will only get one more card on each hand.")
+            choice = input("Would you like to split your pair of " +
+                           str(hand.cards[0][0]) + "'s? [Y/n]").upper()
+            removeLine()
+            if choice != "N":
+                print("Brodie split his pair (fix me)")
+                newHand = Hand()
+                newHand.addCard(hand.cards.pop())
+                return newHand
 
     def getBet(self):
         bet = 1

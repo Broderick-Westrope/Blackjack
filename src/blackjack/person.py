@@ -8,17 +8,17 @@ class Person:
         self.game = game
         self.hands = []
 
-    def getHandTotal(self, handNo=0):
+    def getHandTotal(self, hand):
         total = 0
-        for card in self.hands[handNo].cards:
+        for card in hand.cards:
             total += card[1]
         return total
 
-    def getHandString(self, handNo=0):
+    def getHandString(self, hand):
         string = ""
-        size = len(self.hands[handNo].cards)
+        size = len(hand.cards)
         for i in range(size):
-            string += str(self.hands[handNo].cards[i][0])
+            string += str(hand.cards[i][0])
             if i+1 < size:
                 string += ", "
         return string
@@ -43,3 +43,8 @@ class Person:
         else:
             card = (card, card)
         return card
+
+    def printHand(self, hand):
+        i = self.hands.index(hand)
+        print(self.name + " (Hand " + str(i+1) + "):  Holding ~ " +
+              self.getHandString(hand) + " ~ for a total of |" + str(self.getHandTotal(hand)) + "|")
