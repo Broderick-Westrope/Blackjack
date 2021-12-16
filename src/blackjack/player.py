@@ -13,7 +13,8 @@ class Player(Person):
     def playHand(self, hand):
         self.printHand(hand)
         if self.hands.index(hand) == 0:  # If this its the original two cards dealt
-            self.firstHand()
+            if self.firstHand() == "Double":
+                return
 
         # Play hand
         while True:
@@ -44,12 +45,12 @@ class Player(Person):
             self.printHand(hand)
             if hand.cards[0][0] == "A":
                 self.hit(hand)
-                return
+                return "Split"
         # Double down
         elif total == 9 or total == 10 or total == 11:
             if self.doubleDown() == True:  # If the player wants to double down
                 self.hit(hand)  # Give them one final card
-                return
+                return "Double"
 
     def hit(self, hand):
         card = self.draw()
