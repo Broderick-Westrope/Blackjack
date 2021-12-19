@@ -34,10 +34,7 @@ Blackjack
 =========
 
 
-    Add a short description here!
-
-
-A longer description of your project goes here...
+     A Python implementation of the game Blackjack to test card-counting AI and compare various card-counting techniques.
 
 
 .. _pyscaffold-notes:
